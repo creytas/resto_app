@@ -88,7 +88,7 @@ flutter:
         - asset: assets/fonts/Roboto-ThinItalic.ttf
           style: italic
           weight: 100
-        - asset: fonts/Roboto-Thin.ttf
+        - asset: assets/fonts/Roboto-Thin.ttf
           weight: 100          
     - family: Poppins
       fonts:
@@ -98,7 +98,7 @@ flutter:
         - asset: assets/fonts/Poppins-ThinItalic.ttf
           style: italic
           weight: 100
-        - asset: fonts/Poppins-Thin.ttf
+        - asset: assets/fonts/Poppins-Thin.ttf
           weight: 100
   #
   # For details regarding fonts from package dependencies,
