@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tishka_app/src/utils.dart';
+
+import 'src/pages/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -29,40 +32,6 @@ class MyApp extends StatelessWidget {
       ),
       home: SplashScreen(),
       //const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class SplashScreen extends StatelessWidget {
-  const SplashScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        color: Color(0xFFFA4A0C),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Container(
-              width: 50,
-              height: 50,
-              color: Colors.white,
-              child: Image.asset('assets/images/logo.png'),
-            ),
-            Text(
-              'MEKADOL',
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w700,
-              ),
-            )
-          ],
-        ),
-      ),
     );
   }
 }
