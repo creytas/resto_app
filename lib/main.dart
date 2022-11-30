@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:tishka_app/src/utils.dart';
 
+import 'src/pages/auth_screen.dart';
 import 'src/pages/splash_screen.dart';
 
 void main() {
@@ -29,8 +30,9 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         fontFamily: 'Actor',
         primarySwatch: Colors.blue,
+        hintColor: Colors.black,
       ),
-      home: SplashScreen(),
+      home: AuthScreen(),
       //const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
