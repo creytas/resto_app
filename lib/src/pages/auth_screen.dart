@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tishka_app/src/pages/register_screen.dart';
 
 import 'login_screen.dart';
 
@@ -76,7 +77,7 @@ class AuthScreen extends StatelessWidget {
                 child: LoginForm(),
               ),
               Center(
-                child: Text("It's the SIGN UP form"),
+                child: RegisterForm(),
               ),
             ],
           ),
