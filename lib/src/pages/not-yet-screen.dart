@@ -18,23 +18,27 @@ class _NotYetScreenState extends State<NotYetScreen> {
   Widget build(BuildContext context) {
     widget.title == "orders"
         ? _iconPath = 'assets/images/cart.svg'
-        : _iconPath = 'assets/images/calendar.svg';
+        : widget.title == "history"
+            ? _iconPath = 'assets/images/calendar.svg'
+            : _iconPath = 'assets/images/wifi_off.svg';
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.grey.shade200,
         elevation: 0,
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back_ios_rounded,
-            color: Colors.black,
-            size: 25,
-          ),
-          onPressed: () {
-            print(widget.title[0].toUpperCase() +
-                widget.title.substring(1) +
-                ' - return pressed');
-          },
-        ),
+        leading: widget.title == "no connection"
+            ? null
+            : IconButton(
+                icon: Icon(
+                  Icons.arrow_back_ios_rounded,
+                  color: Colors.black,
+                  size: 25,
+                ),
+                onPressed: () {
+                  print(widget.title[0].toUpperCase() +
+                      widget.title.substring(1) +
+                      ' - return pressed');
+                },
+              ),
         centerTitle: true,
         title: Text(
           widget.title[0].toUpperCase() + widget.title.substring(1),
@@ -59,23 +63,40 @@ class _NotYetScreenState extends State<NotYetScreen> {
                 width: 130,
               ),
             ),
-            Text(
-              'No ' + widget.title + ' yet',
-              style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.w600,
-                  color: Colors.black),
-            ),
+            widget.title == "no connection"
+                ? Text(
+                    'No Internet Connection',
+                    style: TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black),
+                  )
+                : Text(
+                    'No ' + widget.title + ' yet',
+                    style: TextStyle(
+                        fontSize: 28,
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black),
+                  ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
-              child: Text(
-                'Hit the orange button down below to order',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.grey.shade600,
-                  fontSize: 17,
-                ),
-              ),
+              child: widget.title == "no connection"
+                  ? Text(
+                      'Your internet connection is currently not available.',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.grey.shade600,
+                        fontSize: 17,
+                      ),
+                    )
+                  : Text(
+                      'Hit the orange button down below to order',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        color: Colors.grey.shade600,
+                        fontSize: 17,
+                      ),
+                    ),
             ),
             Container(
               width: 250,
@@ -87,13 +108,21 @@ class _NotYetScreenState extends State<NotYetScreen> {
                 onPressed: () {
                   print('start ordering pressed');
                 },
-                child: Text(
-                  'Start ordering',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
+                child: widget.title == "no connection"
+                    ? Text(
+                        'Try again',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      )
+                    : Text(
+                        'Start ordering',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
               ),
             ),
           ],

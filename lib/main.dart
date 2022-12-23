@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
         hintColor: Colors.black,
       ),
       home: NotYetScreen(
-        title: "orders",
+        title: "no connection",
       ),
       //const MyHomePage(title: 'Flutter Demo Home Page'),
     );
