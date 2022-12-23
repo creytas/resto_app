@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:tishka_app/src/pages/not-yet-screen.dart';
 import 'package:tishka_app/src/utils.dart';
 
 import 'src/pages/auth_screen.dart';
@@ -32,7 +33,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         hintColor: Colors.black,
       ),
-      home: AuthScreen(),
+      home: NotYetScreen(
+        title: "orders",
+      ),
       //const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }

@@ -4,19 +4,21 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 //import 'package:flat_icons_flutter/flat_icons_flutter.dart';
 
 class NotYetScreen extends StatefulWidget {
-  const NotYetScreen({super.key});
+  final String title;
+  const NotYetScreen({super.key, required this.title});
 
   @override
   State<NotYetScreen> createState() => _NotYetScreenState();
 }
 
 class _NotYetScreenState extends State<NotYetScreen> {
-  String _title = "orders"; //String _title = "history"
-  String _iconPath =
-      'assets/images/cart.svg'; //String _iconPath = 'assets/images/calendar.svg'
+  String _iconPath = "";
 
   @override
   Widget build(BuildContext context) {
+    widget.title == "orders"
+        ? _iconPath = 'assets/images/cart.svg'
+        : _iconPath = 'assets/images/calendar.svg';
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.grey.shade200,
@@ -28,14 +30,14 @@ class _NotYetScreenState extends State<NotYetScreen> {
             size: 25,
           ),
           onPressed: () {
-            print(_title[0].toUpperCase() +
-                _title.substring(1) +
+            print(widget.title[0].toUpperCase() +
+                widget.title.substring(1) +
                 ' - return pressed');
           },
         ),
         centerTitle: true,
         title: Text(
-          _title[0].toUpperCase() + _title.substring(1),
+          widget.title[0].toUpperCase() + widget.title.substring(1),
           style: TextStyle(
             fontSize: 18,
             color: Colors.black,
@@ -58,7 +60,7 @@ class _NotYetScreenState extends State<NotYetScreen> {
               ),
             ),
             Text(
-              'No $_title yet',
+              'No ' + widget.title + ' yet',
               style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.w600,
