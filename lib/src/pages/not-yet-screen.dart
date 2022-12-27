@@ -48,7 +48,29 @@ class _NotYetScreenState extends State<NotYetScreen> {
               ),
         centerTitle: true,
         title: widget.title == "404"
-            ? null
+            ? Container(
+                width: double.infinity,
+                height: 40,
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade200,
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                child: Center(
+                  child: TextField(
+                    decoration: InputDecoration(
+                      suffixIcon: IconButton(
+                        icon: const Icon(Icons.clear),
+                        onPressed: () {
+                          print('clear pressed');
+                        },
+                      ),
+                      hintText: 'Search...',
+                      border: InputBorder.none,
+                      fillColor: Colors.grey.shade200,
+                      suffixIconColor: Color(0xFFFA4A0C),
+                    ),
+                  ),
+                ))
             : AppBarTitle(
                 widget: widget,
               ), //final headerTitle = title[0].toUpperCase() + title.substring(1);
