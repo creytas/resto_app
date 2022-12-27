@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../components/app_bar_title.dart';
+import '../components/default_not_yet_button.dart';
+import '../components/description_message.dart';
+import '../components/message_title.dart';
 //import 'package:flat_icons_flutter/flat_icons_flutter.dart';
 
 class NotYetScreen extends StatefulWidget {
@@ -20,7 +25,9 @@ class _NotYetScreenState extends State<NotYetScreen> {
         ? _iconPath = 'assets/images/cart.svg'
         : widget.title == "history"
             ? _iconPath = 'assets/images/calendar.svg'
-            : _iconPath = 'assets/images/wifi_off.svg';
+            : widget.title == "404"
+                ? _iconPath = 'assets/images/search.svg'
+                : _iconPath = 'assets/images/wifi_off.svg';
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.grey.shade200,
@@ -40,14 +47,11 @@ class _NotYetScreenState extends State<NotYetScreen> {
                 },
               ),
         centerTitle: true,
-        title: Text(
-          widget.title[0].toUpperCase() + widget.title.substring(1),
-          style: TextStyle(
-            fontSize: 18,
-            color: Colors.black,
-            fontWeight: FontWeight.w600,
-          ),
-        ), //final headerTitle = title[0].toUpperCase() + title.substring(1);
+        title: widget.title == "404"
+            ? null
+            : AppBarTitle(
+                widget: widget,
+              ), //final headerTitle = title[0].toUpperCase() + title.substring(1);
       ),
       body: Container(
         width: double.infinity,
@@ -64,67 +68,33 @@ class _NotYetScreenState extends State<NotYetScreen> {
               ),
             ),
             widget.title == "no connection"
-                ? Text(
-                    'No Internet Connection',
-                    style: TextStyle(
-                        fontSize: 28,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black),
+                ? MessageHeader(
+                    messageTitle: 'No Internet Connection',
                   )
-                : Text(
-                    'No ' + widget.title + ' yet',
-                    style: TextStyle(
-                        fontSize: 28,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black),
-                  ),
+                : widget.title == "404"
+                    ? MessageHeader(
+                        messageTitle: 'Item not found',
+                      )
+                    : MessageHeader(
+                        messageTitle: 'No ' + widget.title + ' yet',
+                      ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 20),
               child: widget.title == "no connection"
-                  ? Text(
-                      'Your internet connection is currently not available.',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.grey.shade600,
-                        fontSize: 17,
-                      ),
+                  ? DescriptionMessage(
+                      message:
+                          'Your internet connection is currently not available.',
                     )
-                  : Text(
-                      'Hit the orange button down below to order',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.grey.shade600,
-                        fontSize: 17,
-                      ),
-                    ),
-            ),
-            Container(
-              width: 250,
-              height: 60,
-              decoration: BoxDecoration(
-                  color: Color(0xFFFA4A0C),
-                  borderRadius: BorderRadius.all(Radius.circular(50))),
-              child: TextButton(
-                onPressed: () {
-                  print('start ordering pressed');
-                },
-                child: widget.title == "no connection"
-                    ? Text(
-                        'Try again',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w700,
+                  : widget.title == "404"
+                      ? DescriptionMessage(
+                          message:
+                              'Try searching the item with another keyword',
+                        )
+                      : DescriptionMessage(
+                          message: 'Hit the orange button down below to order',
                         ),
-                      )
-                    : Text(
-                        'Start ordering',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-              ),
             ),
+            if (widget.title != "404") DefaultButton(widget: widget),
           ],
         ),
       ),
