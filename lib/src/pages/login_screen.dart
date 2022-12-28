@@ -122,13 +122,21 @@ class _LoginFormState extends State<LoginForm> {
                           focusColor: Colors.transparent,
                           hoverColor: Colors.transparent,
                           icon: _is_password_visible
-                              ? Icon(
-                                  FontAwesomeIcons.solidEyeSlash,
-                                  size: 16,
+                              ? Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 18),
+                                  child: Icon(
+                                    FontAwesomeIcons.solidEyeSlash,
+                                    size: 16,
+                                  ),
                                 )
-                              : Icon(
-                                  FontAwesomeIcons.solidEye,
-                                  size: 16,
+                              : Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 18),
+                                  child: Icon(
+                                    FontAwesomeIcons.solidEye,
+                                    size: 16,
+                                  ),
                                 ),
                         ),
                         suffixIconColor: Colors.grey,
