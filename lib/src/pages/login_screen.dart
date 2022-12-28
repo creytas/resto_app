@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({Key? key}) : super(key: key);
@@ -11,6 +12,7 @@ class _LoginFormState extends State<LoginForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   var _user_controller = TextEditingController(),
       _password_controller = TextEditingController();
+  bool _is_password_visible = false;
 
   @override
   void initState() {
@@ -86,7 +88,7 @@ class _LoginFormState extends State<LoginForm> {
                     TextFormField(
                       controller: _password_controller,
                       cursorColor: Color(0xFFFA4A0C),
-                      obscureText: true,
+                      obscureText: !_is_password_visible,
                       enableSuggestions: false,
                       autocorrect: false,
                       style: TextStyle(
@@ -109,6 +111,27 @@ class _LoginFormState extends State<LoginForm> {
                             color: Color(0xFFFA4A0C),
                           ),
                         ),
+                        suffixIcon: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              _is_password_visible = !_is_password_visible;
+                            });
+                          },
+                          splashColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          icon: _is_password_visible
+                              ? Icon(
+                                  FontAwesomeIcons.solidEyeSlash,
+                                  size: 16,
+                                )
+                              : Icon(
+                                  FontAwesomeIcons.solidEye,
+                                  size: 16,
+                                ),
+                        ),
+                        suffixIconColor: Colors.grey,
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
