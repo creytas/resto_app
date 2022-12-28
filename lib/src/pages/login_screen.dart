@@ -9,6 +9,27 @@ class LoginForm extends StatefulWidget {
 
 class _LoginFormState extends State<LoginForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  var _user_controller = TextEditingController(),
+      _password_controller = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Start listening to changes.
+    _user_controller.text = "";
+    _password_controller.text = "";
+  }
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is removed from the
+    // widget tree.
+    _user_controller.dispose();
+    _password_controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -26,6 +47,7 @@ class _LoginFormState extends State<LoginForm> {
                 padding: const EdgeInsets.symmetric(
                     vertical: 10.0, horizontal: 20.0),
                 child: TextFormField(
+                  controller: _user_controller,
                   cursorColor: Color(0xFFFA4A0C),
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
@@ -62,6 +84,7 @@ class _LoginFormState extends State<LoginForm> {
                 child: Column(
                   children: [
                     TextFormField(
+                      controller: _password_controller,
                       cursorColor: Color(0xFFFA4A0C),
                       obscureText: true,
                       enableSuggestions: false,
@@ -120,6 +143,11 @@ class _LoginFormState extends State<LoginForm> {
                 child: TextButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
+                      print("{ user: " +
+                          _user_controller.text +
+                          ", password: " +
+                          _password_controller.text +
+                          " }");
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text('Processing Data')),
                       );
