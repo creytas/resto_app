@@ -10,7 +10,8 @@ import '../components/message_title.dart';
 
 class NotYetScreen extends StatefulWidget {
   final String title;
-  const NotYetScreen({super.key, required this.title});
+  final String? searchItem;
+  const NotYetScreen({super.key, required this.title, this.searchItem});
 
   @override
   State<NotYetScreen> createState() => _NotYetScreenState();
@@ -18,6 +19,23 @@ class NotYetScreen extends StatefulWidget {
 
 class _NotYetScreenState extends State<NotYetScreen> {
   String _iconPath = "";
+  var _controller = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Start listening to changes.
+    _controller.text = widget.searchItem!;
+  }
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is removed from the
+    // widget tree.
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +46,7 @@ class _NotYetScreenState extends State<NotYetScreen> {
             : widget.title == "404"
                 ? _iconPath = 'assets/images/search.svg'
                 : _iconPath = 'assets/images/wifi_off.svg';
+    //widget.title == "404" ? _controller.text = widget.searchItem! : null;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.grey.shade200,
@@ -57,17 +76,25 @@ class _NotYetScreenState extends State<NotYetScreen> {
                 ),
                 child: Center(
                   child: TextField(
+                    onChanged: (text) {
+                      // ignore: avoid_print
+                      print("the recorded value is $text");
+                    },
+                    controller: _controller,
+                    cursorColor: Color(0xFFFA4A0C),
                     decoration: InputDecoration(
                       suffixIcon: IconButton(
                         icon: const Icon(Icons.clear),
-                        onPressed: () {
-                          print('clear pressed');
-                        },
+                        onPressed: _controller.clear,
+                        splashColor: Colors.transparent,
+                        highlightColor: Colors.transparent,
+                        focusColor: Colors.transparent,
+                        hoverColor: Colors.transparent,
                       ),
                       hintText: 'Search...',
                       border: InputBorder.none,
-                      fillColor: Colors.grey.shade200,
-                      suffixIconColor: Color(0xFFFA4A0C),
+                      fillColor: Colors.transparent,
+                      suffixIconColor: Colors.grey,
                     ),
                   ),
                 ))
