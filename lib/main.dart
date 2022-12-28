@@ -35,6 +35,7 @@ class MyApp extends StatelessWidget {
       ),
       home: NotYetScreen(
         title: "404",
+        searchItem: "pain d'epice",
       ),
       //const MyHomePage(title: 'Flutter Demo Home Page'),
     );
