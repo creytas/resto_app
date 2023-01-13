@@ -151,6 +151,10 @@ class _LoginFormState extends State<LoginForm> {
                     Align(
                       alignment: Alignment.centerRight,
                       child: TextButton(
+                        style: ButtonStyle(
+                          overlayColor: MaterialStateColor.resolveWith(
+                              (states) => Color(0x36FA4A0C)),
+                        ),
                         onPressed: () {
                           //TODO FORGOT PASSWORD SCREEN GOES HERE
                         },

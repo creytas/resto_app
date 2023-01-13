@@ -97,7 +97,8 @@ class _NotYetScreenState extends State<NotYetScreen> {
                       suffixIconColor: Colors.grey,
                     ),
                   ),
-                ))
+                ),
+              )
             : AppBarTitle(
                 widget: widget,
               ), //final headerTitle = title[0].toUpperCase() + title.substring(1);
