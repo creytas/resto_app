@@ -37,6 +37,9 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   font_awesome_flutter: ^10.2.1
+  link_text: ^0.2.0
+  flat_icons_flutter: ^1.0.2
+  flutter_svg: ^1.1.6
 
 dev_dependencies:
   flutter_test:
@@ -88,7 +91,7 @@ flutter:
         - asset: assets/fonts/Roboto-ThinItalic.ttf
           style: italic
           weight: 100
-        - asset: fonts/Roboto-Thin.ttf
+        - asset: assets/fonts/Roboto-Thin.ttf
           weight: 100          
     - family: Poppins
       fonts:
@@ -98,7 +101,7 @@ flutter:
         - asset: assets/fonts/Poppins-ThinItalic.ttf
           style: italic
           weight: 100
-        - asset: fonts/Poppins-Thin.ttf
+        - asset: assets/fonts/Poppins-Thin.ttf
           weight: 100
   #
   # For details regarding fonts from package dependencies,
