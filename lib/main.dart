@@ -4,6 +4,7 @@ import 'package:tishka_app/src/pages/not-yet-screen.dart';
 import 'package:tishka_app/src/utils.dart';
 
 import 'src/pages/auth_screen.dart';
+import 'src/pages/search_screen.dart';
 import 'src/pages/splash_screen.dart';
 
 void main() {
@@ -33,10 +34,14 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         hintColor: Colors.black,
       ),
-      home: NotYetScreen(
-        title: "404",
+      home: SearchScreen(
+        searchItem: "Pepper Soup",
       ),
-      //const MyHomePage(title: 'Flutter Demo Home Page'),
+      // home: NotYetScreen(
+      //   title: "404",
+      //   searchItem: "pain d'epice",
+      // ),
+      //home: AuthScreen(),
     );
   }
 }

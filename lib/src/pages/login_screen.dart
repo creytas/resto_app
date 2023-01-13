@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({Key? key}) : super(key: key);
@@ -9,6 +10,28 @@ class LoginForm extends StatefulWidget {
 
 class _LoginFormState extends State<LoginForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  var _user_controller = TextEditingController(),
+      _password_controller = TextEditingController();
+  bool _is_password_visible = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    // Start listening to changes.
+    _user_controller.text = "";
+    _password_controller.text = "";
+  }
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is removed from the
+    // widget tree.
+    _user_controller.dispose();
+    _password_controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -26,6 +49,7 @@ class _LoginFormState extends State<LoginForm> {
                 padding: const EdgeInsets.symmetric(
                     vertical: 10.0, horizontal: 20.0),
                 child: TextFormField(
+                  controller: _user_controller,
                   cursorColor: Color(0xFFFA4A0C),
                   style: TextStyle(
                     fontWeight: FontWeight.w700,
@@ -62,8 +86,9 @@ class _LoginFormState extends State<LoginForm> {
                 child: Column(
                   children: [
                     TextFormField(
+                      controller: _password_controller,
                       cursorColor: Color(0xFFFA4A0C),
-                      obscureText: true,
+                      obscureText: !_is_password_visible,
                       enableSuggestions: false,
                       autocorrect: false,
                       style: TextStyle(
@@ -86,6 +111,35 @@ class _LoginFormState extends State<LoginForm> {
                             color: Color(0xFFFA4A0C),
                           ),
                         ),
+                        suffixIcon: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              _is_password_visible = !_is_password_visible;
+                            });
+                          },
+                          splashColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          focusColor: Colors.transparent,
+                          hoverColor: Colors.transparent,
+                          icon: _is_password_visible
+                              ? Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 18),
+                                  child: Icon(
+                                    FontAwesomeIcons.solidEyeSlash,
+                                    size: 16,
+                                  ),
+                                )
+                              : Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 18),
+                                  child: Icon(
+                                    FontAwesomeIcons.solidEye,
+                                    size: 16,
+                                  ),
+                                ),
+                        ),
+                        suffixIconColor: Colors.grey,
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -97,6 +151,10 @@ class _LoginFormState extends State<LoginForm> {
                     Align(
                       alignment: Alignment.centerRight,
                       child: TextButton(
+                        style: ButtonStyle(
+                          overlayColor: MaterialStateColor.resolveWith(
+                              (states) => Color(0x36FA4A0C)),
+                        ),
                         onPressed: () {
                           //TODO FORGOT PASSWORD SCREEN GOES HERE
                         },
@@ -120,6 +178,11 @@ class _LoginFormState extends State<LoginForm> {
                 child: TextButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
+                      print("{ user: " +
+                          _user_controller.text +
+                          ", password: " +
+                          _password_controller.text +
+                          " }");
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(content: Text('Processing Data')),
                       );
