@@ -52,6 +52,24 @@ jobs:
     steps:
       - checkout
       - print_pipeline_id_command
+
+  error_job:
+    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
+    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
+    docker:
+      - image: *image
+    # Add steps to the job
+    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
+    steps:
+      - checkout
+      - run:
+          name: "Set a job error"
+          command: return 1
+      - run:
+          name: "On fail"
+          command: echo "Error Found !"
+          when: on_fail
+
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
@@ -62,5 +80,6 @@ workflows:
       - print_output_file:
           requires:
             - save_hello_world_output
+      - error_job      
 
 # VS Code Extension Version: 1.5.1
