@@ -63,8 +63,8 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "Set a job error"
-          command: return 1
+          name: "Verify a job error"
+          command: echo "There's no Error till now"
       - run:
           name: "On fail"
           command: echo "Error Found !"
