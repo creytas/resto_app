@@ -9,6 +9,16 @@ version: 2.1
 #     steps:
 #       - run: echo ${CIRCLE_WORKFLOW_ID}
 jobs:
+  # set_aws_credential:
+  #   docker:
+  #     - image:  &image amazon/aws-cli:latest
+  #   steps:
+  #     - checkout
+  #     - run:
+  #         name: "Use ansible to login"
+  #         command: |
+  #           aws configure set
+
   create_infrastructure:
     docker:
       - image: amazon/aws-cli:latest
@@ -17,7 +27,7 @@ jobs:
       - run:
           name: "Create Cloudformation Stack"
           command:  | 
-            aws cloudformation deploy --template-file template.yml --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} --region us-east-1
+            aws cloudformation deploy --template-file template.yml --stack-name myStack-${CIRCLE_WORKFLOW_ID:0:5} --region us-east-1 --profile Admin
   # save_hello_world_output:
   #   # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
   #   # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
